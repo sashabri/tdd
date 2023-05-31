@@ -6,21 +6,24 @@ import java.util.TreeMap;
 
 public class PhoneBook {
 
-    private Map<String, Integer> forPrintName = new TreeMap<>();
-    private Map<Integer,String> forFindName = new HashMap<>();
+    private Map<String, Integer> nameToNumber = new TreeMap<>();
+    private Map<Integer,String> numberToName = new HashMap<>();
 
-    public int add(String name, int number, Map<String, Integer> map) {
+    public int add(String name, int number) {
 
-        if (!map.containsKey(name)) {
-            map.put(name, number);
-            forPrintName.put(name,number);
-            forFindName.put(number, name);
+        if (!nameToNumber.containsKey(name)) {
+            nameToNumber.put(name,number);
+            numberToName.put(number, name);
         }
 
-        return map.size();
+        return nameToNumber.size();
     }
 
     public String findByNumber(int number) {
-        return forFindName.get(number);
+        return numberToName.get(number);
+    }
+
+    public int findByName(String name) {
+        return 0;
     }
 }

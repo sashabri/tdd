@@ -4,41 +4,51 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import phone_book.PhoneBook;
 
-import java.util.Map;
-import java.util.TreeMap;
 
 public class PhoneBookTest {
+
     @Test
     public void testAdd() {
-        Map<String, Integer> result = new TreeMap<>();
-
         PhoneBook phoneBook = new PhoneBook();
-        phoneBook.add("Anya", 123569, result);
 
-        Assertions.assertEquals(result.keySet().size(), 1);
+        int expected1 = 1;
 
-        phoneBook.add("Alis", 456879, result);
+        Assertions.assertEquals(expected1, phoneBook.add("Anya", 123569));
 
-        Assertions.assertEquals(result.keySet().size(), 2);
+        int expected2 = 2;
 
-        phoneBook.add("Alis", 354682, result);
+        Assertions.assertEquals(expected2, phoneBook.add("Alis", 456879));
 
-        Assertions.assertEquals(result.keySet().size(), 2);
+        Assertions.assertEquals(expected2, phoneBook.add("Alis", 354682));
     }
 
     @Test
     public void testFindByNumber() {
-        Map<String, Integer> testListContacts = new TreeMap<>();
 
         PhoneBook phoneBook = new PhoneBook();
-        phoneBook.add("Anya", 123569, testListContacts);
-        phoneBook.add("Alis", 456879, testListContacts);
+        phoneBook.add("Anya", 123569);
+        phoneBook.add("Alis", 456879);
 
-        String actualName = "Anya";
+        String expected = "Anya";
         int controlNumber = 123569;
 
-        String expected = phoneBook.findByNumber(controlNumber);
+        String actualName = phoneBook.findByNumber(controlNumber);
 
         Assertions.assertEquals(expected, actualName);
+    }
+
+    @Test
+    public void testFindByName() {
+
+        PhoneBook phoneBook = new PhoneBook();
+        phoneBook.add("Anya", 123569);
+        phoneBook.add("Alis", 456879);
+
+        String controlName  = "Anya";
+        int expected = 123569;
+
+        int actualNumber = phoneBook.findByName(controlName);
+
+        Assertions.assertEquals(expected, actualNumber);
     }
 }
