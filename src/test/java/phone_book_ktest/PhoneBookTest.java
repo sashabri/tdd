@@ -13,7 +13,6 @@ public class PhoneBookTest {
         Map<String, Integer> result = new TreeMap<>();
 
         PhoneBook phoneBook = new PhoneBook();
-
         phoneBook.add("Anya", 123569, result);
 
         Assertions.assertEquals(result.keySet().size(), 1);
@@ -25,5 +24,21 @@ public class PhoneBookTest {
         phoneBook.add("Alis", 354682, result);
 
         Assertions.assertEquals(result.keySet().size(), 2);
+    }
+
+    @Test
+    public void testFindByNumber() {
+        Map<String, Integer> testListContacts = new TreeMap<>();
+
+        PhoneBook phoneBook = new PhoneBook();
+        phoneBook.add("Anya", 123569, testListContacts);
+        phoneBook.add("Alis", 456879, testListContacts);
+
+        String actualName = "Anya";
+        int controlNumber = 123569;
+
+        String expected = phoneBook.findByNumber(controlNumber);
+
+        Assertions.assertEquals(expected, actualName);
     }
 }

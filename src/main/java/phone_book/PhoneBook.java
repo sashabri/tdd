@@ -19,4 +19,8 @@ public class PhoneBook {
 
         return map.size();
     }
+
+    public String findByNumber(int number) {
+        return null;
+    }
 }
